@@ -8674,16 +8674,1051 @@ bearerAuth
 <p>Список методов:</p>
 
 <p><ul>
-  <li><a href="#payments-external-ID">Получение атрибутов поручения</a></li>
+  <li><a href="#payments">Создание рублёвого платёжного поручения</a></li>
   <li><a href="#payments-external-ID-state">Получение статуса поручения</a></li>
-<li><a href="#payments">Создание рублевого платежного поручения</a></li>
+  <li><a href="#payments-external-ID">Получение атрибутов поручения</a></li>
+<li><a href="#from-invoice">Выставление счета</a></li>
   </ul></p>
+
+<p><h3 id="payments">Создание рублёвого платёжного поручения</h3> </p>
+
+<p>Метод позволяет создать дебетовое платёжное поручение по собственным счетам.</p>
+
+<p>Для создания рублёвого платёжного поручения необходимо отправить запрос POST /payments с access_token, полученным в Alfa ID со scope = payments, и параметрами запроса.</p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST payments <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: string'</span> <span class="se">\</span>
+
+</code></pre></div><h4 id='header-parameters-payments'>Header Parameters</h4>
+<table><thead>
+<tr>
+<th style="text-align: left">Наименование поля</th>
+<th style="text-align: left">Тип</th>
+<th style="text-align: left">Предопределенное значение</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">Authorization</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Bearer {access_token}</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Body parameter</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.01</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4888bdfe92812ebf1f70aa9be4b8a733"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deliveryKind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"электронно"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"departmentalInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"drawerStatus101"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"kbk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18210102010011000110"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"oktmo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45902000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"reasonCode106"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ТП"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"taxPeriod107"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ГД.00.2021"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"docNumber108"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000000000001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"docDate109"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-14"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"paymentKind110"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"digestSignatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"base64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HlaeIHXXEcGT1bFxo1NlpAzpr+kJ2IQrcxVdvDTep6xjsmD1FDb+6NIyLT+/T24S0mPfVCU75sieOMt71TBS7w=="</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"certificateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"incomeTypeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810564564564531"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040173745"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810200000000593"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7723870785"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"553453453"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Центр </span><span class="se">\"</span><span class="s2">ИННОВАЦИЯ</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810600010800068"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"044525225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810400000000225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7736576798"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"772201001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Клиент</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Оплата заказа №1. НДС нет."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"urgencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<h4 id="post__payments-parameters">Body Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>number</td>
+<td>true</td>
+<td>Сумма платежа</td>
+</tr>
+<tr>
+<td>bankComment</td>
+<td>string</td>
+<td>false</td>
+<td>Банковский комментарий к статусу документа</td>
+</tr>
+<tr>
+<td>bankStatus</td>
+<td>string</td>
+<td>false</td>
+<td>Статус документа:<br>  * <code>ACCEPTED</code> - Принят;<br>  * <code>CREATED</code> - Создан;<br>  * <code>SIGNED</code> - Подписан;<br>  * <code>DELETED</code> - Удалён;<br>  * <code>REFUSEDBYBANK</code> - Отвергнут банком;<br>  * <code>REQUISITEERROR</code> - Ошибка реквизитов;<br>  * <code>IMPLEMENTED</code> - Исполнен</td>
+</tr>
+<tr>
+<td>crucialFieldsHash</td>
+<td>string</td>
+<td>false</td>
+<td>Hash от ключевых полей документа</td>
+</tr>
+<tr>
+<td>date</td>
+<td>string</td>
+<td>true</td>
+<td>Дата составления документа</td>
+</tr>
+<tr>
+<td>deliveryKind</td>
+<td>string</td>
+<td>false</td>
+<td>Вид платежа</td>
+</tr>
+<tr>
+<td>departmentalInfo</td>
+<td><a href="#schemadepartmentalinfo">DepartmentalInfo</a></td>
+<td>false</td>
+<td>Реквизиты налогового, таможенного или иного бюджетного платежа</td>
+</tr>
+<tr>
+<td>digestSignatures</td>
+<td>[<a href="#schemasignature">Signature</a>]</td>
+<td>false</td>
+<td>[Электронные подписи по дайджесту документа]</td>
+</tr>
+<tr>
+<td>externalId</td>
+<td>string</td>
+<td>true</td>
+<td>Идентификатор документа, присвоенный партнером (UUID)</td>
+</tr>
+<tr>
+<td>incomeTypeCode</td>
+<td>string</td>
+<td>false</td>
+<td>Код вида дохода получателей выплаты по 229-ФЗ</td>
+</tr>
+<tr>
+<td>number</td>
+<td>string</td>
+<td>false</td>
+<td>Номер документа</td>
+</tr>
+<tr>
+<td>operationCode</td>
+<td>string</td>
+<td>true</td>
+<td>Код операции</td>
+</tr>
+<tr>
+<td>payeeAccount</td>
+<td>string</td>
+<td>true</td>
+<td>Счет получателя платежа</td>
+</tr>
+<tr>
+<td>payeeBankBic</td>
+<td>string</td>
+<td>true</td>
+<td>БИК банка получателя платежа</td>
+</tr>
+<tr>
+<td>payeeBankCorrAccount</td>
+<td>string</td>
+<td>false</td>
+<td>Корсчет банка получателя платежа</td>
+</tr>
+<tr>
+<td>payeeInn</td>
+<td>string</td>
+<td>false</td>
+<td>ИНН получателя платежа</td>
+</tr>
+<tr>
+<td>payeeKpp</td>
+<td>string</td>
+<td>false</td>
+<td>КПП получателя платежа</td>
+</tr>
+<tr>
+<td>payeeName</td>
+<td>string</td>
+<td>true</td>
+<td>Полное наименование получателя платежа</td>
+</tr>
+<tr>
+<td>payerAccount</td>
+<td>string</td>
+<td>true</td>
+<td>Счет плательщика</td>
+</tr>
+<tr>
+<td>payerBankBic</td>
+<td>string</td>
+<td>true</td>
+<td>БИК банка плательщика</td>
+</tr>
+<tr>
+<td>payerBankCorrAccount</td>
+<td>string</td>
+<td>true</td>
+<td>Корсчет банка плательщика</td>
+</tr>
+<tr>
+<td>payerInn</td>
+<td>string</td>
+<td>true</td>
+<td>ИНН плательщика</td>
+</tr>
+<tr>
+<td>payerKpp</td>
+<td>string</td>
+<td>false</td>
+<td>КПП плательщика</td>
+</tr>
+<tr>
+<td>payerName</td>
+<td>string</td>
+<td>true</td>
+<td>Полное наименование плательщика</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>string</td>
+<td>true</td>
+<td>Очередность платежа</td>
+</tr>
+<tr>
+<td>purpose</td>
+<td>string</td>
+<td>true</td>
+<td>Назначение платежа</td>
+</tr>
+<tr>
+<td>urgencyCode</td>
+<td>string</td>
+<td>false</td>
+<td>Код срочности:<br>  * <code>OFFHOURS</code> - неотложный;<br>  * <code>BESP</code> - банковские электронные срочные платежи;<br>  * <code>NORMAL</code> - срочность не указана</td>
+</tr>
+<tr>
+<td>vat</td>
+<td><a href="#schemavat">Vat</a></td>
+<td>false</td>
+<td>Данные НДС</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>201 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.01</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4888bdfe92812ebf1f70aa9be4b8a733"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deliveryKind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"электронно"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"departmentalInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"drawerStatus101"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"kbk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18210102010011000110"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"oktmo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45902000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"reasonCode106"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ТП"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"taxPeriod107"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ГД.00.2021"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"docNumber108"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000000000001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"docDate109"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-14"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"paymentKind110"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"digestSignatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"base64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HlaeIHXXEcGT1bFxo1NlpAzpr+kJ2IQrcxVdvDTep6xjsmD1FDb+6NIyLT+/T24S0mPfVCU75sieOMt71TBS7w=="</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"certificateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"incomeTypeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810564564564531"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040173745"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810200000000593"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7723870785"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"553453453"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Центр </span><span class="se">\"</span><span class="s2">ИННОВАЦИЯ</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810600010800068"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"044525225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810400000000225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7736576798"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"772201001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Клиент</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Оплата заказа №1. НДС нет."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"urgencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<h4 id="post__payments-responses">Responses</h4>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
+<td>Документ создан</td>
+<td><a href="#schemapayment">Payment</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Неверные входные параметры запроса</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Предоставленный токен просрочен, отозван, имеет неправильный формат или недействителен по другим причинам</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>У пользователя нет прав на использование запрашиваемого сервиса, доступ к которому не предусмотрен настройками scope</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>409</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.8">Conflict</a></td>
+<td>Конфликт</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>429</td>
+<td><a href="https://tools.ietf.org/html/rfc6585#section-4">Too Many Requests</a></td>
+<td>Слишком много запросов в заданный период времени</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>500</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
+<td>Внутренняя ошибка сервиса при выполнении обработки запроса</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>503</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.4">Service Unavailable</a></td>
+<td>Сервер временно недоступен</td>
+<td>None</td>
+</tr>
+</tbody></table>
+
+<h4 id='schemas-14'>Schemas</h4>
+<h4 id="tocS_Payment">Payment</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemapayment"></a>
+<a id="schema_Payment"></a>
+<a id="tocSpayment"></a>
+<a id="tocspayment"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.01</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4888bdfe92812ebf1f70aa9be4b8a733"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deliveryKind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"электронно"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"departmentalInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"uip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"drawerStatus101"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"kbk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18210102010011000110"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"oktmo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45902000"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"reasonCode106"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ТП"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"taxPeriod107"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ГД.00.2021"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"docNumber108"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000000000001"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"docDate109"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-14"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"paymentKind110"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"digestSignatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"base64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HlaeIHXXEcGT1bFxo1NlpAzpr+kJ2IQrcxVdvDTep6xjsmD1FDb+6NIyLT+/T24S0mPfVCU75sieOMt71TBS7w=="</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"certificateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"incomeTypeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810564564564531"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040173745"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810200000000593"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7723870785"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"553453453"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Центр </span><span class="se">\"</span><span class="s2">ИННОВАЦИЯ</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810600010800068"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"044525225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810400000000225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7736576798"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"772201001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Клиент</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Оплата заказа №1. НДС нет."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"urgencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>Данные платёжного поручения</p>
+<h4 id='properties-79'>Properties</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>number</td>
+<td>true</td>
+<td>Сумма платежа</td>
+</tr>
+<tr>
+<td>bankComment</td>
+<td>string</td>
+<td>false</td>
+<td>Банковский комментарий к статусу документа</td>
+</tr>
+<tr>
+<td>bankStatus</td>
+<td>string</td>
+<td>false</td>
+<td>Статус документа:<br>  * <code>ACCEPTED</code> - Принят;<br>  * <code>CREATED</code> - Создан;<br>  * <code>SIGNED</code> - Подписан;<br>  * <code>DELETED</code> - Удалён;<br>  * <code>REFUSEDBYBANK</code> - Отвергнут банком;<br>  * <code>REQUISITEERROR</code> - Ошибка реквизитов;<br>  * <code>IMPLEMENTED</code> - Исполнен</td>
+</tr>
+<tr>
+<td>crucialFieldsHash</td>
+<td>string</td>
+<td>false</td>
+<td>Hash от ключевых полей документа</td>
+</tr>
+<tr>
+<td>date</td>
+<td>string</td>
+<td>true</td>
+<td>Дата составления документа</td>
+</tr>
+<tr>
+<td>deliveryKind</td>
+<td>string</td>
+<td>false</td>
+<td>Вид платежа</td>
+</tr>
+<tr>
+<td>departmentalInfo</td>
+<td><a href="#schemadepartmentalinfo">DepartmentalInfo</a></td>
+<td>false</td>
+<td>Реквизиты налогового, таможенного или иного бюджетного платежа</td>
+</tr>
+<tr>
+<td>digestSignatures</td>
+<td>[<a href="#schemasignature">Signature</a>]</td>
+<td>false</td>
+<td>[Электронные подписи по дайджесту документа]</td>
+</tr>
+<tr>
+<td>externalId</td>
+<td>string(uuid)</td>
+<td>true</td>
+<td>Идентификатор документа, присвоенный партнером (UUID)</td>
+</tr>
+<tr>
+<td>incomeTypeCode</td>
+<td>string</td>
+<td>false</td>
+<td>Код вида дохода получателей выплаты по 229-ФЗ</td>
+</tr>
+<tr>
+<td>number</td>
+<td>string</td>
+<td>false</td>
+<td>Номер документа</td>
+</tr>
+<tr>
+<td>operationCode</td>
+<td>string</td>
+<td>true</td>
+<td>Код операции</td>
+</tr>
+<tr>
+<td>payeeAccount</td>
+<td>string</td>
+<td>true</td>
+<td>Счет получателя платежа</td>
+</tr>
+<tr>
+<td>payeeBankBic</td>
+<td>string</td>
+<td>true</td>
+<td>БИК банка получателя платежа</td>
+</tr>
+<tr>
+<td>payeeBankCorrAccount</td>
+<td>string</td>
+<td>false</td>
+<td>Корсчет банка получателя платежа</td>
+</tr>
+<tr>
+<td>payeeInn</td>
+<td>string</td>
+<td>false</td>
+<td>ИНН получателя платежа</td>
+</tr>
+<tr>
+<td>payeeKpp</td>
+<td>string</td>
+<td>false</td>
+<td>КПП получателя платежа</td>
+</tr>
+<tr>
+<td>payeeName</td>
+<td>string</td>
+<td>true</td>
+<td>Полное наименование получателя платежа</td>
+</tr>
+<tr>
+<td>payerAccount</td>
+<td>string</td>
+<td>true</td>
+<td>Счет плательщика</td>
+</tr>
+<tr>
+<td>payerBankBic</td>
+<td>string</td>
+<td>true</td>
+<td>БИК банка плательщика</td>
+</tr>
+<tr>
+<td>payerBankCorrAccount</td>
+<td>string</td>
+<td>true</td>
+<td>Корсчет банка плательщика</td>
+</tr>
+<tr>
+<td>payerInn</td>
+<td>string</td>
+<td>true</td>
+<td>ИНН плательщика</td>
+</tr>
+<tr>
+<td>payerKpp</td>
+<td>string</td>
+<td>false</td>
+<td>КПП плательщика</td>
+</tr>
+<tr>
+<td>payerName</td>
+<td>string</td>
+<td>true</td>
+<td>Полное наименование плательщика</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>string</td>
+<td>true</td>
+<td>Очередность платежа</td>
+</tr>
+<tr>
+<td>purpose</td>
+<td>string</td>
+<td>true</td>
+<td>Назначение платежа</td>
+</tr>
+<tr>
+<td>urgencyCode</td>
+<td>string</td>
+<td>false</td>
+<td>Код срочности:<br>  * <code>OFFHOURS</code> - неотложный;<br>  * <code>BESP</code> - банковские электронные срочные платежи;<br>  * <code>NORMAL</code> - срочность не указана</td>
+</tr>
+<tr>
+<td>vat</td>
+<td><a href="#schemavat">Vat</a></td>
+<td>false</td>
+<td>Данные НДС</td>
+</tr>
+</tbody></table>
+
+<h4 id="tocS_DepartmentalInfo">DepartmentalInfo</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemadepartmentalinfo"></a>
+<a id="schema_DepartmentalInfo"></a>
+<a id="tocSdepartmentalinfo"></a>
+<a id="tocsdepartmentalinfo"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"uip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"drawerStatus101"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"kbk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18210102010011000110"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"oktmo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45902000"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"reasonCode106"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ТП"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"taxPeriod107"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ГД.00.2021"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"docNumber108"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000000000001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"docDate109"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-14"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"paymentKind110"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>Реквизиты налогового, таможенного или иного бюджетного платежа</p>
+<h4 id='properties-80'>Properties</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>uip</td>
+<td>string</td>
+<td>false</td>
+<td>Уникальный идентификатор платежа</td>
+</tr>
+<tr>
+<td>drawerStatus101</td>
+<td>string</td>
+<td>false</td>
+<td>Показатель статуса налогоплательщика</td>
+</tr>
+<tr>
+<td>kbk</td>
+<td>string</td>
+<td>false</td>
+<td>Код бюджетной классификации</td>
+</tr>
+<tr>
+<td>oktmo</td>
+<td>string</td>
+<td>false</td>
+<td>Код OKTMO</td>
+</tr>
+<tr>
+<td>reasonCode106</td>
+<td>string</td>
+<td>false</td>
+<td>Показатель основания платежа</td>
+</tr>
+<tr>
+<td>taxPeriod107</td>
+<td>string</td>
+<td>false</td>
+<td>Налоговый период или код таможенного органа</td>
+</tr>
+<tr>
+<td>docNumber108</td>
+<td>string</td>
+<td>false</td>
+<td>Номер налогового документа</td>
+</tr>
+<tr>
+<td>docDate109</td>
+<td>string</td>
+<td>false</td>
+<td>Дата налогового документа в формате YYYY-MM-DD</td>
+</tr>
+<tr>
+<td>paymentKind110</td>
+<td>string</td>
+<td>false</td>
+<td>Тип налогового платежа</td>
+</tr>
+</tbody></table>
+
+<h4 id="tocS_Signature">Signature</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemasignature"></a>
+<a id="schema_Signature"></a>
+<a id="tocSsignature"></a>
+<a id="tocssignature"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"base64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HlaeIHXXEcGT1bFxo1NlpAzpr+kJ2IQrcxVdvDTep6xjsmD1FDb+6NIyLT+/T24S0mPfVCU75sieOMt71TBS7w=="</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"certificateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>Электронные подписи по дайджесту документа</p>
+<h4 id='properties-81'>Properties</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>base64Encoded</td>
+<td>string</td>
+<td>true</td>
+<td>Значение электронной подписи, закодированное в Base64</td>
+</tr>
+<tr>
+<td>certificateUuid</td>
+<td>string(uuid)</td>
+<td>true</td>
+<td>Серийный номер сертификата (UUID)</td>
+</tr>
+</tbody></table>
+
+<h4 id="tocS_Vat">Vat</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemavat"></a>
+<a id="schema_Vat"></a>
+<a id="tocSvat"></a>
+<a id="tocsvat"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>Данные НДС</p>
+<h4 id='properties-82'>Properties</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>number</td>
+<td>false</td>
+<td>Сумма НДС</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>string</td>
+<td>false</td>
+<td>Ставка НДС</td>
+</tr>
+<tr>
+<td>type</td>
+<td>string</td>
+<td>true</td>
+<td>Способ расчета НДС:<br>  <code>INCLUDED</code> - НДС включен в сумму платежа;<br>   <code>NO_VAT</code> - не облагается НДС;<br>   <code>MANUAL</code> - ручной ввод НДС;<br>   <code>ONTOP</code> - плюс НДС;</td>
+</tr>
+</tbody></table>
+
+<h4 id="tocS_Error">Error</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemaerror"></a>
+<a id="schema_Error"></a>
+<a id="tocSerror"></a>
+<a id="tocserror"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>Ошибка</p>
+<h4 id='properties-83'>Properties</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>true</td>
+<td>Код ошибки</td>
+</tr>
+<tr>
+<td>error_description</td>
+<td>string</td>
+<td>false</td>
+<td>Сообщение об ошибке</td>
+</tr>
+</tbody></table>
+
+<p><h3 id="payments-external-ID-state">Получение статуса поручения</h3></p>
+
+<p>Метод позволяет получить статус платёжного поручения.</p>
+
+<p>Для получения статуса поручения необходимо отправить запрос GET /payments/{externalId}/state с access_token, полученным в Alfa ID со scope = payments, и параметрами запроса.</p>
+
+<blockquote>
+<p>Code samples</p>
+</blockquote>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET payments/<span class="o">{</span>externalId<span class="o">}</span>/state <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: string'</span> <span class="se">\</span>
+
+</code></pre></div>
+<h4 id="get__payments_{externalid}_state-parameters">Parameters</h4>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>In</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalId</td>
+<td>path</td>
+<td>string</td>
+<td>true</td>
+<td>Идентификатор документа, присвоенный партнером (UUID)</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>string</td>
+<td>true</td>
+<td>Access token</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACCEPTED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Отправим платёж в течение банковского дня"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"channelInfo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"371a3c4cc7f07494dad9e6a292dfb998"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h4 id="get__payments_{externalid}_state-responses">Responses</h4>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
+<td>OK</td>
+<td><a href="#schemapaymentdocstate">PaymentDocState</a></td>
+</tr>
+<tr>
+<td>400</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
+<td>Неверные входные параметры запроса</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>401</td>
+<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
+<td>Предоставленный токен просрочен, отозван, имеет неправильный формат или недействителен по другим причинам</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>403</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
+<td>У пользователя нет прав на использование запрашиваемого сервиса, доступ к которому не предусмотрен настройками scope</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>409</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.8">Conflict</a></td>
+<td>Конфликт</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>429</td>
+<td><a href="https://tools.ietf.org/html/rfc6585#section-4">Too Many Requests</a></td>
+<td>Слишком много запросов в заданный период времени</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>500</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
+<td>Внутренняя ошибка сервиса при выполнении обработки запроса</td>
+<td><a href="#schemaerror">Error</a></td>
+</tr>
+<tr>
+<td>503</td>
+<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.4">Service Unavailable</a></td>
+<td>Сервер временно недоступен</td>
+<td>None</td>
+</tr>
+</tbody></table>
+
+<aside class="warning">
+To perform this operation, you must be authenticated by means of one of the following methods:
+bearerAuth
+</aside>
+<h4 id='schemas-13'>Schemas</h4>
+<h4 id="tocS_PaymentDocState">PaymentDocState</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemapaymentdocstate"></a>
+<a id="schema_PaymentDocState"></a>
+<a id="tocSpaymentdocstate"></a>
+<a id="tocspaymentdocstate"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACCEPTED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Отправим платёж в течение банковского дня"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"channelInfo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"371a3c4cc7f07494dad9e6a292dfb998"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>Статус платёжного документа</p>
+<h4 id='properties-77'>Properties</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>bankStatus</td>
+<td>string</td>
+<td>false</td>
+<td>Статус документа:<br>  * <code>ACCEPTED</code> - Принят;<br>  * <code>CREATED</code> - Создан;<br>  * <code>SIGNED</code> - Подписан;<br>  * <code>DELETED</code> - Удалён;<br>  * <code>REFUSEDBYBANK</code> - Отвергнут банком;<br>  * <code>REQUISITEERROR</code> - Ошибка реквизитов;<br>  * <code>IMPLEMENTED</code> - Исполнен</td>
+</tr>
+<tr>
+<td>bankComment</td>
+<td>string</td>
+<td>false</td>
+<td>Банковский комментарий к статусу документа</td>
+</tr>
+<tr>
+<td>channelInfo</td>
+<td>string</td>
+<td>false</td>
+<td>Комментарий, специфичный для документа, полученного по данному каналу</td>
+</tr>
+<tr>
+<td>crucialFieldsHash</td>
+<td>string</td>
+<td>false</td>
+<td>Hash от ключевых полей документа</td>
+</tr>
+</tbody></table>
+
+<h4 id="tocS_Error">Error</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemaerror"></a>
+<a id="schema_Error"></a>
+<a id="tocSerror"></a>
+<a id="tocserror"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>Ошибка</p>
+<h4 id='properties-78'>Properties</h4>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>true</td>
+<td>Код ошибки</td>
+</tr>
+<tr>
+<td>error_description</td>
+<td>string</td>
+<td>false</td>
+<td>Сообщение об ошибке</td>
+</tr>
+</tbody></table>
 
 <p><h3 id="payments-external-ID">Получение атрибутов поручения</h3></p>
 
-<p>Метод позволяет получить атрибуты ранее отправленного рублевого платежного поручения.</p>
+<p>Метод позволяет получить атрибуты ранее отправленного рублёвого платёжного поручения.</p>
 
-<p>Для получения атрибутов поручения необходимо отправить запрос GET payments/{externalId} с access_token, полученным в Alfa ID со scope = payments, и параметрами запроса.</p>
+<p>Для получения атрибутов поручения необходимо отправить запрос GET /payments/{externalId} с access_token, полученным в Alfa ID со scope = payments, и параметрами запроса.</p>
 
 <blockquote>
 <p>Code samples</p>
@@ -8772,8 +9807,7 @@ bearerAuth
     </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"voCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61150"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div>
 <h4 id="get__payments_{externalid}-responses">Responses</h4>
@@ -8902,8 +9936,7 @@ bearerAuth
     </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
     </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"voCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61150"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre></div>
@@ -8933,7 +9966,7 @@ bearerAuth
 <td>bankStatus</td>
 <td>string</td>
 <td>false</td>
-<td>Статус документа</td>
+<td>Статус документа:<br>  * <code>ACCEPTED</code> - Принят;<br>  * <code>CREATED</code> - Создан;<br>  * <code>SIGNED</code> - Подписан;<br>  * <code>DELETED</code> - Удалён;<br>  * <code>REFUSEDBYBANK</code> - Отвергнут банком;<br>  * <code>REQUISITEERROR</code> - Ошибка реквизитов;<br>  * <code>IMPLEMENTED</code> - Исполнен</td>
 </tr>
 <tr>
 <td>crucialFieldsHash</td>
@@ -9084,12 +10117,6 @@ bearerAuth
 <td><a href="#schemavat">Vat</a></td>
 <td>false</td>
 <td>Данные НДС</td>
-</tr>
-<tr>
-<td>voCode</td>
-<td>string</td>
-<td>false</td>
-<td>Код вида валютной операции</td>
 </tr>
 </tbody></table>
 
@@ -9301,492 +10328,38 @@ bearerAuth
 </tr>
 </tbody></table>
 
-<p><h3 id="payments-external-ID-state">Получение статуса поручения</h3></p>
+<h2 id="from-invoice">Выставление счета</h2>
 
-<p>Метод позволяет получить статус платежного поручения.</p>
+<p>Метод позволяет Партнеру выставлять клиенту счета, на основании которых формируются платёжные поручения. Отправка POST /payments/from-invoice возможна только на счет Альфа-Банка и только на счет, который принадлежит организации.</p>
 
-<p>Для получения атрибутов поручения необходимо отправить запрос GET payments/{externalId}/state с access_token, полученным в Alfa ID со scope = payments, и параметрами запроса.</p>
+<p>Для создания счета на оплату необходимо отправить запрос POST /payments/from-invoice с access_token, полученным в Alfa ID, со scope = payments, и параметрами запроса.</p>
 
-<blockquote>
-<p>Code samples</p>
-</blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> GET payments/<span class="o">{</span>externalId<span class="o">}</span>/state <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: string'</span> <span class="se">\</span>
-
-</code></pre></div>
-<h4 id="get__payments_{externalid}_state-parameters">Parameters</h4>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>externalId</td>
-<td>path</td>
-<td>string</td>
-<td>true</td>
-<td>Идентификатор документа, присвоенный партнером (UUID)</td>
-</tr>
-<tr>
-<td>Authorization</td>
-<td>header</td>
-<td>string</td>
-<td>true</td>
-<td>Access token</td>
-</tr>
-</tbody></table>
-
-<blockquote>
-<p>Example responses</p>
-
-<p>200 Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACCEPTED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Отправим платёж в течение банковского дня"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"channelInfo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"371a3c4cc7f07494dad9e6a292dfb998"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h4 id="get__payments_{externalid}_state-responses">Responses</h4>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.1">OK</a></td>
-<td>OK</td>
-<td><a href="#schemapaymentdocstate">PaymentDocState</a></td>
-</tr>
-<tr>
-<td>400</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
-<td>Неверные входные параметры запроса</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>401</td>
-<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Предоставленный токен просрочен, отозван, имеет неправильный формат или недействителен по другим причинам</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>403</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
-<td>У пользователя нет прав на использование запрашиваемого сервиса, доступ к которому не предусмотрен настройками scope</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>409</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.8">Conflict</a></td>
-<td>Конфликт</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>429</td>
-<td><a href="https://tools.ietf.org/html/rfc6585#section-4">Too Many Requests</a></td>
-<td>Слишком много запросов в заданный период времени</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>500</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
-<td>Внутренняя ошибка сервиса при выполнении обработки запроса</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>503</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.4">Service Unavailable</a></td>
-<td>Сервер временно недоступен</td>
-<td>None</td>
-</tr>
-</tbody></table>
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-bearerAuth
-</aside>
-<h4 id='schemas-13'>Schemas</h4>
-<h4 id="tocS_PaymentDocState">PaymentDocState</h4>
-
-<!-- backwards compatibility -->
-
-<p><a id="schemapaymentdocstate"></a>
-<a id="schema_PaymentDocState"></a>
-<a id="tocSpaymentdocstate"></a>
-<a id="tocspaymentdocstate"></a></p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACCEPTED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Отправим платёж в течение банковского дня"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"channelInfo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"371a3c4cc7f07494dad9e6a292dfb998"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre></div>
-<p>Статус платёжного документа</p>
-<h4 id='properties-77'>Properties</h4>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>bankStatus</td>
-<td>string</td>
-<td>false</td>
-<td>Статус документа</td>
-</tr>
-<tr>
-<td>bankComment</td>
-<td>string</td>
-<td>false</td>
-<td>Банковский комментарий к статусу документа</td>
-</tr>
-<tr>
-<td>channelInfo</td>
-<td>string</td>
-<td>false</td>
-<td>Комментарий, специфичный для документа, полученного по данному каналу</td>
-</tr>
-<tr>
-<td>crucialFieldsHash</td>
-<td>string</td>
-<td>false</td>
-<td>Hash от ключевых полей документа</td>
-</tr>
-</tbody></table>
-
-<h4 id="tocS_Error">Error</h4>
-
-<!-- backwards compatibility -->
-
-<p><a id="schemaerror"></a>
-<a id="schema_Error"></a>
-<a id="tocSerror"></a>
-<a id="tocserror"></a></p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre></div>
-<p>Ошибка</p>
-<h4 id='properties-78'>Properties</h4>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>error</td>
-<td>string</td>
-<td>true</td>
-<td>Код ошибки</td>
-</tr>
-<tr>
-<td>error_description</td>
-<td>string</td>
-<td>false</td>
-<td>Сообщение об ошибке</td>
-</tr>
-</tbody></table>
-
-<p><h3 id="payments">Создание рублевого платежного поручения</h3> </p>
-
-<p>Метод позволяет создать дебетовое платежное поручение по собственным счетам.</p>
-
-<p>Для получения атрибутов поручения необходимо отправить запрос POST payments с access_token, полученным в Alfa ID со scope = payments, и параметрами запроса.</p>
+<p>Используется токен доступа, полученный по <a href="https://alfaapi.github.io/specification/#auth-code-flow" target="_blank" ><strong>Authorization Code Flow</strong></a>.</p>
 
 <blockquote>
 <p>Code samples</p>
 </blockquote>
-<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST payments <span class="se">\</span>
+<div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="nt">-X</span> POST /payments/from-invoice <span class="se">\</span>
   <span class="nt">-H</span> <span class="s1">'Accept: application/json'</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s1">'Authorization: string'</span> <span class="se">\</span>
+  <span class="nt">-H</span> <span class="s1">'Authorization: string'</span>
 
-</code></pre></div>
-<blockquote>
-<p>Body parameter</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.01</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4888bdfe92812ebf1f70aa9be4b8a733"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deliveryKind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"электронно"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"departmentalInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"uip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"drawerStatus101"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"kbk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18210102010011000110"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"oktmo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45902000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"reasonCode106"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ТП"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"taxPeriod107"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ГД.00.2021"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"docNumber108"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000000000001"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"docDate109"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-14"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"paymentKind110"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"digestSignatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"base64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HlaeIHXXEcGT1bFxo1NlpAzpr+kJ2IQrcxVdvDTep6xjsmD1FDb+6NIyLT+/T24S0mPfVCU75sieOMt71TBS7w=="</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"certificateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"incomeTypeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"operationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810564564564531"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040173745"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810200000000593"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7723870785"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"553453453"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Центр </span><span class="se">\"</span><span class="s2">ИННОВАЦИЯ</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810600010800068"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"044525225"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810400000000225"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7736576798"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"772201001"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Клиент</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Оплата заказа №1. НДС нет."</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"urgencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"voCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61150"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h4 id="post__payments-parameters">Parameters</h4>
-
+</code></pre></div><h4 id='header-parameters-37'>Header Parameters</h4>
 <table><thead>
 <tr>
-<th>Name</th>
-<th>In</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
+<th style="text-align: left">Наименование поля</th>
+<th style="text-align: left">Тип</th>
+<th style="text-align: left">Предопределенное значение</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Authorization</td>
-<td>header</td>
-<td>string</td>
-<td>true</td>
-<td>Access token</td>
-</tr>
-<tr>
-<td>body</td>
-<td>body</td>
-<td><a href="#schemapayment">Payment</a></td>
-<td>false</td>
-<td>Тело запроса</td>
+<td style="text-align: left">Authorization</td>
+<td style="text-align: left">String</td>
+<td style="text-align: left">Bearer {access_token}</td>
 </tr>
 </tbody></table>
 
-<blockquote>
-<p>Example responses</p>
+<h4 id="from-invoice-parameters">Body Parameters</h4>
 
-<p>201 Response</p>
-</blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.01</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4888bdfe92812ebf1f70aa9be4b8a733"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deliveryKind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"электронно"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"departmentalInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"uip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"drawerStatus101"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"kbk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18210102010011000110"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"oktmo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45902000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"reasonCode106"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ТП"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"taxPeriod107"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ГД.00.2021"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"docNumber108"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000000000001"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"docDate109"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-14"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"paymentKind110"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"digestSignatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"base64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HlaeIHXXEcGT1bFxo1NlpAzpr+kJ2IQrcxVdvDTep6xjsmD1FDb+6NIyLT+/T24S0mPfVCU75sieOMt71TBS7w=="</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"certificateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"incomeTypeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"operationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810564564564531"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040173745"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810200000000593"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7723870785"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"553453453"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Центр </span><span class="se">\"</span><span class="s2">ИННОВАЦИЯ</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810600010800068"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"044525225"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810400000000225"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7736576798"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"772201001"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Клиент</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Оплата заказа №1. НДС нет."</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"urgencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"voCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61150"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<h4 id="post__payments-responses">Responses</h4>
-
-<table><thead>
-<tr>
-<th>Status</th>
-<th>Meaning</th>
-<th>Description</th>
-<th>Schema</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>201</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.3.2">Created</a></td>
-<td>Документ создан</td>
-<td><a href="#schemapayment">Payment</a></td>
-</tr>
-<tr>
-<td>400</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.1">Bad Request</a></td>
-<td>Неверные входные параметры запроса</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>401</td>
-<td><a href="https://tools.ietf.org/html/rfc7235#section-3.1">Unauthorized</a></td>
-<td>Предоставленный токен просрочен, отозван, имеет неправильный формат или недействителен по другим причинам</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>403</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.3">Forbidden</a></td>
-<td>У пользователя нет прав на использование запрашиваемого сервиса, доступ к которому не предусмотрен настройками scope</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>409</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.5.8">Conflict</a></td>
-<td>Конфликт</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>429</td>
-<td><a href="https://tools.ietf.org/html/rfc6585#section-4">Too Many Requests</a></td>
-<td>Слишком много запросов в заданный период времени</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>500</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.1">Internal Server Error</a></td>
-<td>Внутренняя ошибка сервиса при выполнении обработки запроса</td>
-<td><a href="#schemaerror">Error</a></td>
-</tr>
-<tr>
-<td>503</td>
-<td><a href="https://tools.ietf.org/html/rfc7231#section-6.6.4">Service Unavailable</a></td>
-<td>Сервер временно недоступен</td>
-<td>None</td>
-</tr>
-</tbody></table>
-
-<aside class="warning">
-To perform this operation, you must be authenticated by means of one of the following methods:
-bearerAuth
-</aside>
-<h4 id='schemas-14'>Schemas</h4>
-<h4 id="tocS_Payment">Payment</h4>
-
-<!-- backwards compatibility -->
-
-<p><a id="schemapayment"></a>
-<a id="schema_Payment"></a>
-<a id="tocSpayment"></a>
-<a id="tocspayment"></a></p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.01</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4888bdfe92812ebf1f70aa9be4b8a733"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deliveryKind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"электронно"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"departmentalInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"uip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"drawerStatus101"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"kbk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18210102010011000110"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"oktmo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45902000"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"reasonCode106"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ТП"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"taxPeriod107"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ГД.00.2021"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"docNumber108"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000000000001"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"docDate109"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-14"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"paymentKind110"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"digestSignatures"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nl">"base64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HlaeIHXXEcGT1bFxo1NlpAzpr+kJ2IQrcxVdvDTep6xjsmD1FDb+6NIyLT+/T24S0mPfVCU75sieOMt71TBS7w=="</span><span class="p">,</span><span class="w">
-      </span><span class="nl">"certificateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"incomeTypeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"operationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810564564564531"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040173745"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810200000000593"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7723870785"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"553453453"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Центр </span><span class="se">\"</span><span class="s2">ИННОВАЦИЯ</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810600010800068"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"044525225"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810400000000225"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7736576798"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"772201001"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"payerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Клиент</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Оплата заказа №1. НДС нет."</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"urgencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="nl">"voCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"61150"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre></div>
-<p>Данные платёжного поручения</p>
-<h4 id='properties-79'>Properties</h4>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -9832,16 +10405,291 @@ bearerAuth
 <td>Вид платежа</td>
 </tr>
 <tr>
-<td>departmentalInfo</td>
-<td><a href="#schemadepartmentalinfo">DepartmentalInfo</a></td>
+<td>expirationDate</td>
+<td>string</td>
 <td>false</td>
-<td>Реквизиты налогового, таможенного или иного бюджетного платежа</td>
+<td>Дата истечения заказа</td>
 </tr>
 <tr>
-<td>digestSignatures</td>
-<td>[<a href="#schemasignature">Signature</a>]</td>
+<td>externalId</td>
+<td>string</td>
+<td>true</td>
+<td>Идентификатор документа, присвоенный партнером (UUID)</td>
+</tr>
+<tr>
+<td>operationCode</td>
+<td>string</td>
 <td>false</td>
-<td>[Электронные подписи по дайджесту документа]</td>
+<td>Код операции</td>
+</tr>
+<tr>
+<td>orderNumber</td>
+<td>string</td>
+<td>false</td>
+<td>Номер заказа</td>
+</tr>
+<tr>
+<td>payeeAccount</td>
+<td>string</td>
+<td>true</td>
+<td>Счет получателя платежа</td>
+</tr>
+<tr>
+<td>payeeOrgIdHash</td>
+<td>string</td>
+<td>false</td>
+<td>Идентификатор получателя платежа</td>
+</tr>
+<tr>
+<td>paymentNumber</td>
+<td>string</td>
+<td>false</td>
+<td>Номер платежного поручения</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>string</td>
+<td>false</td>
+<td>Очередность платежа</td>
+</tr>
+<tr>
+<td>purpose</td>
+<td>string</td>
+<td>true</td>
+<td>Назначение платежа</td>
+</tr>
+<tr>
+<td>urgencyCode</td>
+<td>string</td>
+<td>false</td>
+<td>Код срочности:<br>  * <code>OFFHOURS</code> - неотложный;<br>  * <code>BESP</code> - банковские электронные срочные платежи;<br>  * <code>NORMAL</code> - срочность не указана</td>
+</tr>
+<tr>
+<td>vat</td>
+<td><a href="#schemavat">Vat</a></td>
+<td>false</td>
+<td>Данные НДС</td>
+</tr>
+</tbody></table>
+
+<blockquote>
+<p>Example responses</p>
+
+<p>200 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.01</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"925a81c0d635559af364262b9ed5f0972c0bab64dd03189b511bc0e4cdc80d50"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deliveryKind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"электронно"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"incomeTypeCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810564564564531"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040173745"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810200000000593"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7723870785"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"553453453"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Центр </span><span class="se">\"</span><span class="s2">ИННОВАЦИЯ</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810600010800068"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"044525225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810400000000225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7736576798"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"772201001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Клиент</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Оплата заказа №1. НДС нет."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"urgencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>400 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_request"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request is missing a required parameter: externalId"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>401 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_token"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The access token provided is expired, revoked, malformed, or invalid for other reasons"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>403 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"insufficient_scope"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The request requires higher privileges than provided by the access token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>404 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown_route"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Route is not found or not active"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<blockquote>
+<p>500 Response</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"internal_error"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<h3 id="from-invoice-responses">Responses</h3>
+
+<table><thead>
+<tr>
+<th>Status</th>
+<th>Meaning</th>
+<th>Description</th>
+<th>Schema</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td>Успешный результат</td>
+<td><a href="#schemainvoiceresponse">InvoiceResponse</a></td>
+</tr>
+<tr>
+<td>400 (Bad Request)</td>
+<td>invalid_request</td>
+<td>Неверные входные параметры запроса</td>
+<td><a href="#schemaerrorbadrequest">ErrorBadRequest</a></td>
+</tr>
+<tr>
+<td>401 (Unauthorized)</td>
+<td>invalid_token</td>
+<td>Предоставленный токен просрочен, отозван, имеет неправильный формат или недействителен по другим причинам</td>
+<td><a href="#schemaerrorunauthorized">ErrorUnauthorized</a></td>
+</tr>
+<tr>
+<td>403 (Forbidden)</td>
+<td>insufficient_scope</td>
+<td>У пользователя нет прав на использование запрашиваемого сервиса, доступ к которому не предусмотрен настройками scope</td>
+<td><a href="#schemaerrorscope">ErrorScope</a></td>
+</tr>
+<tr>
+<td>429 (Too Many Requests)</td>
+<td>too many requests</td>
+<td>Cлишком много запросов в заданный период времени</td>
+<td>None</td>
+</tr>
+<tr>
+<td>500 (Internal Server Error)</td>
+<td>internal_error</td>
+<td>Внутренняя ошибка сервиса при выполнении обработки запроса</td>
+<td><a href="#schemaerrorinternal">ErrorInternal</a></td>
+</tr>
+<tr>
+<td>503 (Service Unavailable)</td>
+<td>service unavailable</td>
+<td>Сервер временно недоступен</td>
+<td>None</td>
+</tr>
+</tbody></table>
+<h4 id='schemas-37'>Schemas</h4>
+<h4 id="tocS_InvoiceResponse">InvoiceResponse</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemainvoiceresponse"></a>
+<a id="schema_InvoiceResponse"></a>
+<a id="tocSinvoiceresponse"></a>
+<a id="tocsinvoiceresponse"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.01</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankComment"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"bankStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREATED"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"crucialFieldsHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"925a81c0d635559af364262b9ed5f0972c0bab64dd03189b511bc0e4cdc80d50"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"deliveryKind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"электронно"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"incomeTypeCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"operationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810564564564531"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"040173745"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810200000000593"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7723870785"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"553453453"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payeeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Центр </span><span class="se">\"</span><span class="s2">ИННОВАЦИЯ</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"40702810600010800068"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerBankBic"</span><span class="p">:</span><span class="w"> </span><span class="s2">"044525225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerBankCorrAccount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30101810400000000225"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerInn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7736576798"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerKpp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"772201001"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"payerName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Общество с ограниченной ответственностью </span><span class="se">\"</span><span class="s2">Клиент</span><span class="se">\"</span><span class="s2">"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"purpose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Оплата заказа №1. НДС нет."</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"urgencyCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"vat"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>Данные рублёвого платёжного поручения</p>
+<h3 id='properties-545'>Properties</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>amount</td>
+<td>number</td>
+<td>true</td>
+<td>Сумма платежа</td>
+</tr>
+<tr>
+<td>bankComment</td>
+<td>string</td>
+<td>false</td>
+<td>Банковский комментарий к статусу документа</td>
+</tr>
+<tr>
+<td>bankStatus</td>
+<td>string</td>
+<td>false</td>
+<td>Статус документа</td>
+</tr>
+<tr>
+<td>crucialFieldsHash</td>
+<td>string</td>
+<td>false</td>
+<td>Hash от ключевых полей документа</td>
+</tr>
+<tr>
+<td>date</td>
+<td>string(date)</td>
+<td>true</td>
+<td>Дата составления документа</td>
+</tr>
+<tr>
+<td>deliveryKind</td>
+<td>string</td>
+<td>false</td>
+<td>Вид платежа: электронно</td>
 </tr>
 <tr>
 <td>externalId</td>
@@ -9865,7 +10713,7 @@ bearerAuth
 <td>operationCode</td>
 <td>string</td>
 <td>true</td>
-<td>Код операции</td>
+<td>Код операции: 01</td>
 </tr>
 <tr>
 <td>payeeAccount</td>
@@ -9906,25 +10754,25 @@ bearerAuth
 <tr>
 <td>payerAccount</td>
 <td>string</td>
-<td>true</td>
+<td>false</td>
 <td>Счет плательщика</td>
 </tr>
 <tr>
 <td>payerBankBic</td>
 <td>string</td>
-<td>true</td>
+<td>false</td>
 <td>БИК банка плательщика</td>
 </tr>
 <tr>
 <td>payerBankCorrAccount</td>
 <td>string</td>
-<td>true</td>
+<td>false</td>
 <td>Корсчет банка плательщика</td>
 </tr>
 <tr>
 <td>payerInn</td>
 <td>string</td>
-<td>true</td>
+<td>false</td>
 <td>ИНН плательщика</td>
 </tr>
 <tr>
@@ -9936,7 +10784,7 @@ bearerAuth
 <tr>
 <td>payerName</td>
 <td>string</td>
-<td>true</td>
+<td>false</td>
 <td>Полное наименование плательщика</td>
 </tr>
 <tr>
@@ -9955,144 +10803,13 @@ bearerAuth
 <td>urgencyCode</td>
 <td>string</td>
 <td>false</td>
-<td>Код срочности:<br>  * <code>OFFHOURS</code> - неотложный;<br>  * <code>BESP</code> - банковские электронные срочные платежи;<br>  * <code>NORMAL</code> - срочность не указана;</td>
+<td>Код срочности:<br>  * <code>OFFHOURS</code> - неотложный;<br>  * <code>BESP</code> - банковские электронные срочные платежи;<br>  * <code>NORMAL</code> - срочность не указана</td>
 </tr>
 <tr>
 <td>vat</td>
 <td><a href="#schemavat">Vat</a></td>
 <td>false</td>
 <td>Данные НДС</td>
-</tr>
-<tr>
-<td>voCode</td>
-<td>string</td>
-<td>false</td>
-<td>Код вида валютной операции</td>
-</tr>
-</tbody></table>
-
-<h4 id="tocS_DepartmentalInfo">DepartmentalInfo</h4>
-
-<!-- backwards compatibility -->
-
-<p><a id="schemadepartmentalinfo"></a>
-<a id="schema_DepartmentalInfo"></a>
-<a id="tocSdepartmentalinfo"></a>
-<a id="tocsdepartmentalinfo"></a></p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"uip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"drawerStatus101"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"kbk"</span><span class="p">:</span><span class="w"> </span><span class="s2">"18210102010011000110"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"oktmo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"45902000"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"reasonCode106"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ТП"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"taxPeriod107"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ГД.00.2021"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"docNumber108"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000000000001"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"docDate109"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-14"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"paymentKind110"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre></div>
-<p>Реквизиты налогового, таможенного или иного бюджетного платежа</p>
-<h4 id='properties-80'>Properties</h4>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>uip</td>
-<td>string</td>
-<td>false</td>
-<td>Уникальный идентификатор платежа</td>
-</tr>
-<tr>
-<td>drawerStatus101</td>
-<td>string</td>
-<td>false</td>
-<td>Показатель статуса налогоплательщика</td>
-</tr>
-<tr>
-<td>kbk</td>
-<td>string</td>
-<td>false</td>
-<td>Код бюджетной классификации</td>
-</tr>
-<tr>
-<td>oktmo</td>
-<td>string</td>
-<td>false</td>
-<td>Код OKTMO</td>
-</tr>
-<tr>
-<td>reasonCode106</td>
-<td>string</td>
-<td>false</td>
-<td>Показатель основания платежа</td>
-</tr>
-<tr>
-<td>taxPeriod107</td>
-<td>string</td>
-<td>false</td>
-<td>Налоговый период или код таможенного органа</td>
-</tr>
-<tr>
-<td>docNumber108</td>
-<td>string</td>
-<td>false</td>
-<td>Номер налогового документа</td>
-</tr>
-<tr>
-<td>docDate109</td>
-<td>string</td>
-<td>false</td>
-<td>Дата налогового документа в формате YYYY-MM-DD</td>
-</tr>
-<tr>
-<td>paymentKind110</td>
-<td>string</td>
-<td>false</td>
-<td>Тип налогового платежа</td>
-</tr>
-</tbody></table>
-
-<h4 id="tocS_Signature">Signature</h4>
-
-<!-- backwards compatibility -->
-
-<p><a id="schemasignature"></a>
-<a id="schema_Signature"></a>
-<a id="tocSsignature"></a>
-<a id="tocssignature"></a></p>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"base64Encoded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HlaeIHXXEcGT1bFxo1NlpAzpr+kJ2IQrcxVdvDTep6xjsmD1FDb+6NIyLT+/T24S0mPfVCU75sieOMt71TBS7w=="</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"certificateUuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22a6dd81-103a-4d3a-8e9b-0ba4b527f5f6"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre></div>
-<p>Электронные подписи по дайджесту документа</p>
-<h4 id='properties-81'>Properties</h4>
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>base64Encoded</td>
-<td>string</td>
-<td>true</td>
-<td>Значение электронной подписи, закодированное в Base64</td>
-</tr>
-<tr>
-<td>certificateUuid</td>
-<td>string(uuid)</td>
-<td>true</td>
-<td>Серийный номер сертификата (UUID)</td>
 </tr>
 </tbody></table>
 
@@ -10109,10 +10826,9 @@ bearerAuth
   </span><span class="nl">"rate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
   </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VAT"</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre></div>
 <p>Данные НДС</p>
-<h4 id='properties-82'>Properties</h4>
+<h3 id='properties-546'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
@@ -10137,26 +10853,163 @@ bearerAuth
 <td>type</td>
 <td>string</td>
 <td>true</td>
-<td>Способ расчета НДС:<br>  <code>INCLUDED</code> - НДС включен в сумму платежа;<br>   <code>NO_VAT</code> - не облагается НДС;<br>   <code>MANUAL</code> - ручной ввод НДС;<br>   <code>ONTOP</code> - плюс НДС;</td>
+<td>Способ расчета НДС:<br>  * <code>INCLUDED</code> - НДС включен в сумму платежа;<br>  * <code>NO_VAT</code> - не облагается НДС;<br>  * <code>MANUAL</code> - ручной ввод НДС;<br>  * <code>ONTOP</code> - плюс НДС</td>
 </tr>
 </tbody></table>
 
-<h4 id="tocS_Error">Error</h4>
+<h4 id="tocS_ErrorBadRequest">ErrorBadRequest</h4>
 
 <!-- backwards compatibility -->
 
-<p><a id="schemaerror"></a>
-<a id="schema_Error"></a>
-<a id="tocSerror"></a>
-<a id="tocserror"></a></p>
+<p><a id="schemaerrorbadrequest"></a>
+<a id="schema_ErrorBadRequest"></a>
+<a id="tocSerrorbadrequest"></a>
+<a id="tocserrorbadrequest"></a></p>
 <div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_request"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request is missing a required parameter: externalId"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='properties-547'>Properties</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>true</td>
+<td>Код ошибки</td>
+</tr>
+<tr>
+<td>error_description</td>
+<td>string</td>
+<td>false</td>
+<td>Сообщение об ошибке</td>
+</tr>
+</tbody></table>
 
-</span></code></pre></div>
-<p>Ошибка</p>
-<h4 id='properties-83'>Properties</h4>
+<h4 id="tocS_ErrorUnauthorized">ErrorUnauthorized</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemaerrorunauthorized"></a>
+<a id="schema_ErrorUnauthorized"></a>
+<a id="tocSerrorunauthorized"></a>
+<a id="tocserrorunauthorized"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_token"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The access token provided is expired, revoked, malformed, or invalid for other reasons"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='properties-548'>Properties</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>true</td>
+<td>Код ошибки</td>
+</tr>
+<tr>
+<td>error_description</td>
+<td>string</td>
+<td>false</td>
+<td>Сообщение об ошибке</td>
+</tr>
+</tbody></table>
+
+<h4 id="tocS_ErrorScope">ErrorScope</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemaerrorscope"></a>
+<a id="schema_ErrorScope"></a>
+<a id="tocSerrorscope"></a>
+<a id="tocserrorscope"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"insufficient_scope"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The request requires higher privileges than provided by the access token"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='properties-549'>Properties</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>true</td>
+<td>Код ошибки</td>
+</tr>
+<tr>
+<td>error_description</td>
+<td>string</td>
+<td>false</td>
+<td>Сообщение об ошибке</td>
+</tr>
+</tbody></table>
+
+<h4 id="tocS_ErrorNotFound">ErrorNotFound</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemaerrornotfound"></a>
+<a id="schema_ErrorNotFound"></a>
+<a id="tocSerrornotfound"></a>
+<a id="tocserrornotfound"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown_route"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Route is not found or not active"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='properties-550'>Properties</h3>
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>error</td>
+<td>string</td>
+<td>true</td>
+<td>Код ошибки</td>
+</tr>
+<tr>
+<td>error_description</td>
+<td>string</td>
+<td>false</td>
+<td>Сообщение об ошибке</td>
+</tr>
+</tbody></table>
+
+<h4 id="tocS_ErrorInternal">ErrorInternal</h4>
+
+<!-- backwards compatibility -->
+
+<p><a id="schemaerrorinternal"></a>
+<a id="schema_ErrorInternal"></a>
+<a id="tocSerrorinternal"></a>
+<a id="tocserrorinternal"></a></p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"internal_error"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"error_description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internal server error"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div><h3 id='properties-551'>Properties</h3>
 <table><thead>
 <tr>
 <th>Name</th>
